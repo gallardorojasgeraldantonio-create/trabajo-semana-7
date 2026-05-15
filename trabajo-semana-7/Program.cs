@@ -16,7 +16,11 @@ namespace trabajo_semana_7
             //ejemplo03();
             //ejercicio01();
             //ejercicio02();
-            
+            //--------tarea (mi parte)---------
+            ejercicio06();
+            //ejercicio07();
+
+
         }
         static void ejemplo01()
             //identificadores de multiplos
@@ -132,6 +136,87 @@ namespace trabajo_semana_7
             Console.WriteLine("----------------------------------");
 
             Console.ReadKey();
+
+            
+        }
+        static void ejercicio06()
+        {
+            /*
+            Reto integrador con estructura repetitiva Hacer Mientras / do-while, números aleatorios, 
+            condición compuesta, acumuladores de puntaje y decisión múltiple.  Crear un juego de Piedra, 
+            Papel o Tijera contra la computadora. 
+            Las opciones son: 
+            Opción Jugada 
+            1       Piedra 
+            2       Papel 
+            3       Tijera  
+            El juego se repite por rondas hasta que el jugador o la computadora llegue a 3 puntos. En cada ronda, 
+            la computadora elige una opción al azar. Después de cada ronda, se debe mostrar el marcador. Al final, 
+            se muestra el ganador del juego. 
+            */
+
+            Random rand = new Random();
+
+            int puntaje_jugador = 0;
+            int puntaje_PC = 0;
+            int ronda = 0;
+
+            do
+            {
+                ronda++;
+                Console.WriteLine($"*------ RONDA{ronda} --------*");
+                Console.WriteLine("elije tu arma");
+                Console.WriteLine("1. papel");
+                Console.WriteLine("2. tijera");
+                Console.WriteLine("3. piedra");
+                Console.Write("ingresar numero ----> : ");
+                int arma = int.Parse(Console.ReadLine());
+
+                int PC = rand.Next(1, 4);
+                Console.WriteLine($"la PC elijio {PC} ");
+
+                if (arma < 1 || arma > 3)
+                {
+                    Console.WriteLine("arma invalida. la ronda se anula");
+                    ronda--;
+                }
+                else if (arma == PC)
+                {
+                    Console.WriteLine("empate");
+                }
+                else if (arma == 1 && PC == 3 || arma == 2 && PC == 1 || arma == 3 && PC == 2)
+                {
+                    Console.WriteLine("GANA EL JUGADOR");
+                    Console.WriteLine("ganaste 100 puntos !!!");
+                    puntaje_jugador = puntaje_jugador + 100;
+                }
+                else
+                {
+                    Console.WriteLine("GANA PC");
+                    Console.WriteLine("PC gana 100 puntos !!!");
+                    puntaje_PC = puntaje_PC + 100;
+                }
+                Console.WriteLine($"marcador --- TU puntaje {puntaje_jugador} ----- puntaje de PC {puntaje_PC}");
+            }
+            while (puntaje_jugador != 300 && puntaje_PC != 300);
+            {
+                if (puntaje_jugador == 300)
+                {
+                    Console.WriteLine("GANASTE :3 ");
+                    Console.ReadLine();
+                }
+
+                else
+                {
+                    Console.WriteLine("GANO LA PC :C");
+                    Console.ReadLine();
+                }
+            }
+
+
+
+
+
         }
     }
 }
